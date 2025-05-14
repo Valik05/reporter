@@ -14,7 +14,8 @@ const ReportHistory = () => {
     const form = useForm<TaskRequestQueries>();
     const { watch } = form;
     const { getReportList, reportList } = useReport();
-    useEffect(() => { getReportList(watch()) }, [getReportList, watch])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    useEffect(() => { getReportList(watch()) }, [])
     return (
         <FormProvider {...form}>
             <article className={classNames('report-history-container')}>

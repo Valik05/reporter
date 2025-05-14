@@ -11,10 +11,13 @@ import { getDay } from '../../utils/getDay';
 import { useParams } from 'react-router-dom';
 import { useReport } from '../../context/useReport';
 import { Datepicker } from '../UI/DatePicker/Datepicker';
+import { LOCAL_STORAGE } from '../../enums/localStorage';
+import { useSystemMsg } from '../../context/useSystemMsg';
 import type { TaskRequestBody } from '../../models/API/TaskAPI';
 import { FormProvider, useFieldArray, useForm } from 'react-hook-form';
 
 const ReportCreater = ({ mode = "create" }: { mode?: "create" | "edit" }) => {
+    const { showSystemMsg } = useSystemMsg();
     const { report_id } = useParams();
     const { getReport, report, createReport, updateReport } = useReport();
     const form = useForm<TaskRequestBody>({
@@ -34,6 +37,7 @@ const ReportCreater = ({ mode = "create" }: { mode?: "create" | "edit" }) => {
 
     const onSubmit = (dates: TaskRequestBody) => {
         console.log(dates);
+        if (!localStorage.getItem(LOCAL_STORAGE.ACCESS_TOKEN)) return showSystemMsg({ text: "Sign in please", type: "error" })
         if (mode === "create") createReport(dates)
         if (mode === "edit") updateReport({ id: report_id!, ...dates })
     }
