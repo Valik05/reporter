@@ -16,6 +16,7 @@ interface Props extends React.HtmlHTMLAttributes<HTMLHeadingElement> {
 const Title = ({ text, headingLevel, children, fontFamily = ['default'], fontWeight, fontSize, lineHeight, color = "black", classes, ...h2Props }: Props) => {
     const HeadingTag = `h${headingLevel}`;
     return (
+        // @ts-expect-error unknown issue
         <HeadingTag className={classNames('title', [fontFamily, color], classes)} {...h2Props} style={{ fontWeight, fontSize, lineHeight, ...h2Props.style }}>
             {text}
             {children}
