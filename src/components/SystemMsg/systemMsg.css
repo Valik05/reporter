@@ -1,0 +1,19 @@
+.system-msg-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+
+    gap: 0.675rem;
+
+    position: fixed;
+
+    right: 0px;
+    bottom: 1.25rem;
+
+    z-index: 99999;
+
+    width: fit-content;
+
+    padding: 0 0.875rem 0 0;
+    margin: 0;
+}

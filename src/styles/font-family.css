@@ -1,0 +1,16 @@
+:root {
+    --font-default: 'Inter';
+    --font-secondary: 'Roboto';
+}
+
+@font-face {
+    font-family: 'Roboto';
+    font-style: normal;
+    src: url("../assets/fonts/Roboto/Roboto.ttf") format("TrueType");
+}
+
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    src: url("../assets/fonts/Inter/Inter.ttf") format("TrueType");
+}

@@ -1,0 +1,12 @@
+.custom-empty-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 2rem 1rem;
+
+    border: 1px dashed;
+    border-color: var(--gray);
+
+    border-radius: 0.5rem;
+}

@@ -1,0 +1,1 @@
+export const URLregexp = /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/i;

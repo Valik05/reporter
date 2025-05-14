@@ -1,0 +1,53 @@
+.input-content {
+    display: flex;
+    flex-direction: column;
+
+    gap: 0.5rem;
+}
+
+.input-content.fullwidth {
+    width: 100%;
+}
+
+.input-content.fullwidth input {
+    width: 100%;
+}
+
+.input-content input {
+    font-size: 0.875rem;
+    font-family: var(--font-default);
+    font-weight: 400;
+
+    color: var(--black);
+
+    margin: 0;
+
+    min-width: 300px;
+
+    border: none;
+
+    background: var(--white);
+
+    border-radius: 0.5rem;
+
+    padding: 0.5rem 0.75rem 0.375rem;
+
+    border: 1px solid;
+    border-color: var(--divider);
+}
+
+.input-content input.error {
+    border-color: var(--red);
+}
+
+.input-content input:focus {
+    outline: 2px solid;
+    outline-color: var(--divider);
+}
+
+.input-content label {
+    font-size: 0.875rem;
+    font-weight: 300;
+
+    padding-left: 0.5rem;
+}

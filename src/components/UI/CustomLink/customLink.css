@@ -1,0 +1,25 @@
+.link {
+    display: flex;
+    align-items: center;
+
+    gap: 0.5rem;
+
+    color: var(--blue);
+}
+
+@media (hover:hover) {
+    .link:hover {
+        color: var(--light-blue);
+    }
+
+}
+
+.link svg {
+    width: 1.125em;
+    height: 1.125rem;
+}
+
+.link.disabled {
+    pointer-events: none;
+    cursor: default;
+}

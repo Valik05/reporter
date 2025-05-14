@@ -1,0 +1,16 @@
+.header-container {
+    display: flex;
+    justify-content: space-between;
+
+    padding: 0.5rem;
+
+    min-height: 3rem;
+
+    background: var(--white);
+
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000, 0 0 #0000, 0 1px 2px 0 rgb(0 0 0 / 0.05);
+}
+
+.header-container.auth {
+    justify-content: center;
+}

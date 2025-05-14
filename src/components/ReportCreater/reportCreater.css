@@ -1,0 +1,62 @@
+.report-creater-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 0.75rem;
+
+    height: 100%;
+
+    padding: 0.5rem 0.5rem 5.25rem 0.5rem;
+
+    overflow-y: auto;
+}
+
+.report-creater-container .title-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 0.5rem;
+
+    color: var(--blue);
+}
+
+.report-creater-container .inputs-container {
+    display: flex;
+    justify-content: center;
+
+    gap: 0.5rem;
+
+    width: 100%;
+}
+
+.report-creater-container .task-sections {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+
+    gap: 0.75rem;
+
+    width: 100%;
+}
+
+.report-creater-container .footer-btn {
+    position: fixed;
+
+    bottom: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: var(--white);
+
+    padding: 1rem;
+
+    border: 1px solid;
+    border-color: var(--divider);
+
+    width: 100%;
+
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000, 0 0 #0000, 0 1px 2px 0 rgb(0 0 0 / 0.05);
+}
