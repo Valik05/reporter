@@ -1,4 +1,4 @@
-import type { TaskSuccessResponceBody } from "../API/TaskAPI"
+import type { TaskRequestBody } from "../API/TaskAPI"
 import type { UseFieldArrayRemove, UseFieldArrayReturn } from "react-hook-form"
 
 export type TaskItemProps = {
@@ -10,4 +10,4 @@ export type TaskItemProps = {
 export type TaskSectionProps = {
     title: string,
     fieldName: string,
-} & UseFieldArrayReturn<TaskSuccessResponceBody, ("yesterday" | "today" | "blockers")>
+} & UseFieldArrayReturn<TaskRequestBody, ("yesterday" | "today" | "blockers")>
