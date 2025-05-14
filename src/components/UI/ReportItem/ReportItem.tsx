@@ -7,9 +7,13 @@ import CustomLink from '../CustomLink/CustomLink';
 import EditIcon from '../../../assets/icons/base/edit-icon.svg?react';
 import DeleteIcon from '../../../assets/icons/base/delete-icon.svg?react';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useReport } from '../../../context/useReport';
 import type { TaskSuccessResponceBody } from '../../../models/API/TaskAPI';
 
-const ReportItem = ({ developer, date, ...props }: TaskSuccessResponceBody) => {
+const ReportItem = ({ id, developer, date, ...props }: TaskSuccessResponceBody) => {
+    const navigate = useNavigate();
+    const { deleteReport } = useReport();
     const [currentCategory, setCurrentCaregory] = useState<"yesterday" | "today" | "blockers">("yesterday");
     return (
         <li className={classNames('report-item-container')}>
@@ -31,11 +35,13 @@ const ReportItem = ({ developer, date, ...props }: TaskSuccessResponceBody) => {
                     <Button
                         text="Edit"
                         startIcon={<EditIcon />}
+                        onClick={() => navigate(`/report/${id}/edit`)}
                     />
                     <Button
                         color="red"
                         text="Delete"
                         startIcon={<DeleteIcon />}
+                        onClick={() => deleteReport({ id })}
                     />
                 </article>
             </article>

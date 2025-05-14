@@ -11,15 +11,17 @@ export type TaskRequestQueries = {
     owner_id?: string
 }
 
-export type TaskRetrieveRequestBody = {
-    id: string,
-}
-
 export type TaskType = {
     url: string,
     description: string
 }
 
+export type TaskDeleteSuccessResponce = { detail: string }
+
+export type TaskRetrieveRequestBody = { id: string }
+
 export type TaskSuccessResponceBody = { id: string } & TaskRequestBody
 
 export type TaskUpdateRequestBody = TaskRetrieveRequestBody & TaskRequestBody
+
+export type TaskDeleteRequestBody = TaskRetrieveRequestBody
