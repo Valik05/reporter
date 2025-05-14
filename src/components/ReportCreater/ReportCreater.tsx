@@ -7,10 +7,10 @@ import TaskSection from '../UI/TaskSection/TaskSection';
 import FileIcon from "../../assets/icons/base/file-icon.svg?react";
 import SaveIcon from "../../assets/icons/base/save-icon.svg?react";
 import { useEffect } from 'react';
+import { getDay } from '../../utils/getDay';
 import { useParams } from 'react-router-dom';
 import { useReport } from '../../context/useReport';
 import { Datepicker } from '../UI/DatePicker/Datepicker';
-import { getDay } from '../../utils/getDay';
 import type { TaskRequestBody } from '../../models/API/TaskAPI';
 import { FormProvider, useFieldArray, useForm } from 'react-hook-form';
 

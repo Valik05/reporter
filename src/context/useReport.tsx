@@ -19,7 +19,7 @@ const ReportContext = createContext<ReportContextType>({} as ReportContextType);
 
 export const ReportProvider = ({ children }: Props) => {
     const { showSystemMsg } = useSystemMsg();
-    const [isReady, setIsReady] = useState(false);
+    const [isReady, setIsReady] = useState(true);
     const [reportList, setReportList] = useState<TaskSuccessResponceBody[]>([]);
     const [report, setReport] = useState<TaskSuccessResponceBody | null>(null);
 
