@@ -7,7 +7,8 @@ export type SelectProps = {
     options?: RegisterOptions
     children?: React.ReactNode,
     classes?: ("fullwidth")[],
-    select: SelectItemType[]
+    selectItems: SelectItemType[],
+    placeholder: string
 }
 
 export type SelectItemType = {

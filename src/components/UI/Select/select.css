@@ -1,0 +1,112 @@
+.select-content {
+    display: flex;
+    flex-direction: column;
+
+    gap: 0.5rem;
+}
+
+.select-content.fullwidth {
+    width: 100%;
+}
+
+.select-content .select-label {
+    font-size: 0.875rem;
+    font-weight: 300;
+
+    padding-left: 0.5rem;
+}
+
+.select-content .select-box {
+    display: flex;
+    flex-direction: column;
+
+    position: relative;
+
+    background: var(--white);
+
+    border-radius: 0.5rem;
+
+    border: 1px solid;
+    border-color: var(--divider);
+
+    min-width: 10rem;
+
+    cursor: pointer;
+}
+
+.select-content.error .select-box {
+    border-color: var(--red);
+}
+
+.select-content .select-box .current-item {
+    padding: 0.5rem 0.75rem 0.375rem;
+
+    border-radius: 0.5rem;
+}
+
+.select-content .select-box .select-item-list {
+    display: flex;
+    flex-direction: column;
+
+    position: absolute;
+
+    top: 100%;
+    left: 0;
+
+    background: var(--white);
+
+    border-radius: 0.5rem;
+
+    padding: 0;
+
+    max-height: 0;
+
+    border: none;
+
+    width: 100%;
+
+    overflow: hidden;
+
+    transition: top 0.3s ease, border 0.3s ease, padding 0.3s linear, max-height 0.5s ease-out;
+}
+
+.select-content .select-box .select-item-list.active {
+    top: 110%;
+
+    padding: 0.5rem 0 0.375rem;
+
+    border: 1px solid;
+    border-color: var(--divider);
+
+    width: 100%;
+
+    max-height: 18.75rem;
+
+    transition: top 0.3s ease, border 0.3s ease, padding 0.3s linear, max-height 1s ease;
+}
+
+.select-content .select-box .select-item-list .select-item {
+    cursor: pointer;
+
+    display: flex;
+
+    padding: 0.5rem 1rem;
+}
+
+.select-content .select-box .select-item-list .select-item.chosen {
+    background: var(--light-gray);
+}
+
+.select-content .select-box .select-item-list .select-item input {
+    display: none;
+}
+
+@media (hover:hover) {
+    .select-content .select-box .current-item:hover {
+        background: var(--light-gray);
+    }
+
+    .select-content .select-box .select-item-list .select-item:hover {
+        background: var(--light-gray);
+    }
+}

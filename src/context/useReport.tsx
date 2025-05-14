@@ -1,5 +1,6 @@
 import { useSystemMsg } from "./useSystemMsg";
-import { createContext, useCallback, useContext, useState } from "react";
+import { LOCAL_STORAGE } from "../enums/localStorage";
+import { createContext, useCallback, useContext, useEffect, useState } from "react";
 import { createReportAPI, getReportAPI, getReportListAPI, updateReportAPI } from "../service/ReportService";
 import type { TaskRequestBody, TaskRequestQueries, TaskRetrieveRequestBody, TaskSuccessResponceBody, TaskUpdateRequestBody } from "../models/API/TaskAPI";
 
@@ -39,8 +40,12 @@ export const ReportProvider = ({ children }: Props) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
-    const getReport = useCallback(async (dates: TaskRetrieveRequestBody) => {
-        setIsReady(false)
+    useEffect(() => {
+        if (localStorage.getItem(LOCAL_STORAGE.ACCESS_TOKEN)) getReportList({})
+    }, [getReportList])
+
+    const getReport = useCallback(async (dates: TaskRetrieveRequestBody, isNotLoading?: boolean) => {
+        if (!isNotLoading) setIsReady(false)
         await getReportAPI(dates)
             .then((res) => {
                 if (res) {
