@@ -30,7 +30,7 @@ const Datepicker = ({ name, id, options, label, minDate, maxDate }: DatepickerPr
                         placeholderText='00.00.00'
                         dateFormat={"dd.MM.yy"}
                         renderCustomHeader={CustomHeader}
-                        selected={value}
+                        selected={value ? new Date(value) : null}
                         onChange={(data: Date | null) => onChange(data && data.toISOString())}
                         popperPlacement="bottom-start"
                     />
