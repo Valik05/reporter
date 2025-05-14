@@ -15,7 +15,7 @@ const FilterContext = createContext<FilterContextType>({} as FilterContextType);
 
 export const FilterProvider = ({ children }: Props) => {
     const { showSystemMsg } = useSystemMsg();
-    const [isReady, setIsReady] = useState(false);
+    const [isReady, setIsReady] = useState(true);
     const [usersList, setUsersList] = useState<FilterUsersSuccessResponce[]>([]);
 
     const getUsersList = useCallback(async () => {
