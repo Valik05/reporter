@@ -31,7 +31,7 @@ const MsgItem = ({ id, text, type, index }: Props) => {
             <CSSTransition key={isDelayed} timeout={300} classNames="transition-system-msg">
                 {isDelayed === 1 ?
                     <li className={classNames('system-msg-content', type)}>
-                        <aside className="icon d-f">{SystemMsgIcons[type]}</aside>
+                        <aside className="icon">{SystemMsgIcons[type]}</aside>
                         <Title
                             text={text}
                             headingLevel={5}

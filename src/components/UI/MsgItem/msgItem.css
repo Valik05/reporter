@@ -16,9 +16,18 @@
 }
 
 .system-msg-content .icon {
+    display: flex;
     align-self: center;
 
     flex: 0 0 auto;
+}
+
+.system-msg-content.success .icon {
+    color: var(--green);
+}
+
+.system-msg-content.error .icon {
+    color: var(--red);
 }
 
 .system-msg-content .icon svg {

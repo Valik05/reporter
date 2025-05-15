@@ -87,7 +87,7 @@ export const ReportProvider = ({ children }: Props) => {
                     getReportList({})
                     setReportList(prev => {
                         const arr = [...prev];
-                        arr.splice(arr.findIndex(el => el.id === dates.id), 1, res)
+                        arr.splice(arr.findIndex(el => el._id === dates._id), 1, res)
                         return arr
                     })
                     showSystemMsg({ type: 'success', text: "Report successfully updated" })
@@ -102,17 +102,15 @@ export const ReportProvider = ({ children }: Props) => {
     const deleteReport = useCallback(async (dates: TaskDeleteRequestBody) => {
         setIsReady(false)
         await deleteReportAPI(dates)
-            .then((res) => {
-                if (res) {
-                    // console.log(res);
-                    getReportList({})
-                    setReportList(prev => {
-                        const arr = [...prev];
-                        arr.splice(arr.findIndex(el => el.id === dates.id), 1)
-                        return arr
-                    })
-                    showSystemMsg({ type: 'success', text: "Report successfully deleted" })
-                }
+            .then(() => {
+                // console.log(res);
+                getReportList({})
+                setReportList(prev => {
+                    const arr = [...prev];
+                    arr.splice(arr.findIndex(el => el._id === dates._id), 1)
+                    return arr
+                })
+                showSystemMsg({ type: 'success', text: "Report successfully deleted" })
             })
             .catch((error) => {
                 if (typeof error === 'string') return showSystemMsg({ type: 'error', text: error })

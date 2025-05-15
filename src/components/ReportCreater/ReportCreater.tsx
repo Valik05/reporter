@@ -17,8 +17,8 @@ import type { TaskRequestBody } from '../../models/API/TaskAPI';
 import { FormProvider, useFieldArray, useForm } from 'react-hook-form';
 
 const ReportCreater = ({ mode = "create" }: { mode?: "create" | "edit" }) => {
-    const { showSystemMsg } = useSystemMsg();
     const { report_id } = useParams();
+    const { showSystemMsg } = useSystemMsg();
     const { getReport, report, createReport, updateReport } = useReport();
     const form = useForm<TaskRequestBody>({
         defaultValues: {
@@ -32,14 +32,14 @@ const ReportCreater = ({ mode = "create" }: { mode?: "create" | "edit" }) => {
     const blockers = useFieldArray({ control, name: "blockers" });
     const yesterday = useFieldArray({ control, name: "yesterday" });
 
-    useEffect(() => { if (mode === "edit" && report_id) getReport({ id: report_id }) }, [mode, report_id, getReport])
+    useEffect(() => { if (mode === "edit" && report_id) getReport({ _id: report_id }) }, [mode, report_id, getReport])
     useEffect(() => { if (mode === "edit" && report) reset(report) }, [report, mode, reset])
 
     const onSubmit = (dates: TaskRequestBody) => {
         console.log(dates);
         if (!localStorage.getItem(LOCAL_STORAGE.ACCESS_TOKEN)) return showSystemMsg({ text: "Sign in please", type: "error" })
         if (mode === "create") createReport(dates)
-        if (mode === "edit") updateReport({ id: report_id!, ...dates })
+        if (mode === "edit") updateReport({ _id: report_id!, ...dates })
     }
 
     return (

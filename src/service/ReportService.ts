@@ -21,9 +21,9 @@ export const getReportListAPI = async (props: TaskRequestQueries) => {
     }
 };
 
-export const getReportAPI = async ({ id }: TaskRetrieveRequestBody) => {
+export const getReportAPI = async ({ _id }: TaskRetrieveRequestBody) => {
     try {
-        const { data } = await axiosService.get<TaskSuccessResponceBody>(`/tasks/reports/${id}`);
+        const { data } = await axiosService.get<TaskSuccessResponceBody>(`/tasks/reports/${_id}`);
         console.log(data);
         return data;
     } catch (error: unknown) {
@@ -43,9 +43,9 @@ export const createReportAPI = async (dates: TaskRequestBody) => {
     }
 };
 
-export const updateReportAPI = async ({ id, ...dates }: TaskUpdateRequestBody) => {
+export const updateReportAPI = async ({ _id, ...dates }: TaskUpdateRequestBody) => {
     try {
-        const { data } = await axiosService.patch<TaskSuccessResponceBody>(`/tasks/reports/${id}`, dates);
+        const { data } = await axiosService.patch<TaskSuccessResponceBody>(`/tasks/reports/${_id}`, dates);
         console.log(data);
         return data;
     } catch (error: unknown) {
@@ -54,9 +54,9 @@ export const updateReportAPI = async ({ id, ...dates }: TaskUpdateRequestBody) =
     }
 };
 
-export const deleteReportAPI = async ({ id }: TaskDeleteRequestBody) => {
+export const deleteReportAPI = async ({ _id }: TaskDeleteRequestBody) => {
     try {
-        const { data } = await axiosService.delete<TaskDeleteSuccessResponce>(`/tasks/reports/${id}`);
+        const { data } = await axiosService.delete<TaskDeleteSuccessResponce>(`/tasks/reports/${_id}`);
         console.log(data);
         return data;
     } catch (error: unknown) {

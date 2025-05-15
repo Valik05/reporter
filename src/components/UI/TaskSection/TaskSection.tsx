@@ -18,7 +18,7 @@ const TaskSection = ({ title, fieldName, fields, append, remove }: TaskSectionPr
                 style={{ textAlign: "center" }}
             />
             {fields.length > 0
-                ? fields.map((_, index) => <TaskItem fieldName={fieldName} remove={remove} index={index} />)
+                ? fields.map((_, index) => <TaskItem fieldName={fieldName} remove={remove} index={index} key={index} />)
                 : <CustomEmpty />
             }
             <Button

@@ -11,7 +11,7 @@ import { useNavigate } from 'react-router-dom';
 import { useReport } from '../../../context/useReport';
 import type { TaskSuccessResponceBody } from '../../../models/API/TaskAPI';
 
-const ReportItem = ({ id, developer, date, ...props }: TaskSuccessResponceBody) => {
+const ReportItem = ({ _id, developer, date, ...props }: TaskSuccessResponceBody) => {
     const navigate = useNavigate();
     const { deleteReport } = useReport();
     const [currentCategory, setCurrentCaregory] = useState<"yesterday" | "today" | "blockers">("yesterday");
@@ -35,13 +35,13 @@ const ReportItem = ({ id, developer, date, ...props }: TaskSuccessResponceBody) 
                     <Button
                         text="Edit"
                         startIcon={<EditIcon />}
-                        onClick={() => navigate(`/report/${id}/edit`)}
+                        onClick={() => navigate(`/report/${_id}/edit`)}
                     />
                     <Button
                         color="red"
                         text="Delete"
                         startIcon={<DeleteIcon />}
-                        onClick={() => deleteReport({ id })}
+                        onClick={() => deleteReport({ _id })}
                     />
                 </article>
             </article>

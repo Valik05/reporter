@@ -1,3 +1,4 @@
+import './systemMsg.css';
 import classNames from "classnames";
 import MsgItem from "../UI/MsgItem/MsgItem";
 import { useSystemMsg } from "../../context/useSystemMsg";
