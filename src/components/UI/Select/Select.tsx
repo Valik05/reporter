@@ -39,8 +39,10 @@ const Select = forwardRef(
                                         htmlFor={name + id + index}
                                         className={classNames("select-item", { chosen: value === field.value })}
                                         onClick={() => setActive(false)}
+                                        key={index}
                                     >
                                         <input
+                                            name={name}
                                             type="radio"
                                             id={name + id + index}
                                             onChange={() => {

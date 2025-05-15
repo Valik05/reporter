@@ -1,17 +1,19 @@
 import Loader from "../components/UI/Loader/Loader";
+import { useUser } from "./useUser";
 import { useFilter } from "./useFilter";
-import { createContext, useContext } from "react";
 import { useReport } from "./useReport";
+import { createContext, useContext } from "react";
 
 type Props = { children: React.ReactNode };
 
 const LoadingContext = createContext({});
 
 export const LoadingProvider = ({ children }: Props) => {
+    const user = useUser();
     const filter = useFilter();
     const report = useReport();
 
-    const isReady = filter.isReady && report.isReady
+    const isReady = user.isReady && filter.isReady && report.isReady
     return (
         <LoadingContext.Provider value={{}}>
             {isReady ? children : <Loader />}

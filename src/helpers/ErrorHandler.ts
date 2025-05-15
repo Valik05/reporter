@@ -14,4 +14,5 @@ export const ErrorHandler = (error: unknown) => {
         }
         return error.message.slice(0, 256)
     }
+    return "Error"
 };

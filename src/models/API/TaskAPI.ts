@@ -20,7 +20,7 @@ export type TaskDeleteSuccessResponce = { detail: string }
 
 export type TaskRetrieveRequestBody = { _id: string }
 
-export type TaskSuccessResponceBody = { _id: string } & TaskRequestBody
+export type TaskSuccessResponceBody = { _id: string, user_id: string } & TaskRequestBody
 
 export type TaskUpdateRequestBody = TaskRetrieveRequestBody & TaskRequestBody
 

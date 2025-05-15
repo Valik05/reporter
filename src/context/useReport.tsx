@@ -3,6 +3,8 @@ import { LOCAL_STORAGE } from "../enums/localStorage";
 import { createContext, useCallback, useContext, useEffect, useState } from "react";
 import { createReportAPI, deleteReportAPI, getReportAPI, getReportListAPI, updateReportAPI } from "../service/ReportService";
 import type { TaskDeleteRequestBody, TaskRequestBody, TaskRequestQueries, TaskRetrieveRequestBody, TaskSuccessResponceBody, TaskUpdateRequestBody } from "../models/API/TaskAPI";
+import { useNavigate } from "react-router-dom";
+import { useUser } from "./useUser";
 
 type ReportContextType = {
     isReady: boolean,
@@ -20,6 +22,8 @@ type Props = { children: React.ReactNode };
 const ReportContext = createContext<ReportContextType>({} as ReportContextType);
 
 export const ReportProvider = ({ children }: Props) => {
+    const { setUser } = useUser();
+    const navigate = useNavigate();
     const { showSystemMsg } = useSystemMsg();
     const [isReady, setIsReady] = useState(true);
     const [reportList, setReportList] = useState<TaskSuccessResponceBody[]>([]);
@@ -55,6 +59,7 @@ export const ReportProvider = ({ children }: Props) => {
                 }
             })
             .catch((error) => {
+                navigate('/')
                 if (typeof error === 'string') return showSystemMsg({ type: 'error', text: error })
             })
             .finally(() => setIsReady(true))
@@ -69,6 +74,7 @@ export const ReportProvider = ({ children }: Props) => {
                     // console.log(res);
                     getReportList({})
                     setReportList(prev => [res, ...prev])
+                    setUser(prev => ({ ...prev!, developer_name: dates.developer }))
                     showSystemMsg({ type: 'success', text: "Report successfully created" })
                 }
             })

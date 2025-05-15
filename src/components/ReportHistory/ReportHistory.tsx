@@ -18,10 +18,13 @@ const ReportHistory = () => {
     const { usersList } = useFilter();
     const { getReportList, reportList } = useReport();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    useEffect(() => { if (watch("date") || watch("owner_id")) getReportList(watch(), true) }, [watch()])
+    useEffect(() => { if (watch("date")) getReportList(watch(), true) }, [watch("date")])
     return (
         <FormProvider {...form}>
-            <article className={classNames('report-history-container')}>
+            <form className={classNames('report-history-container')}
+                onChange={() => {
+                    if (watch("date") || watch("owner_id")) getReportList(watch(), true)
+                }}>
                 <article className={classNames('title-container')}>
                     <ReportHistoryIcon />
                     <Title
@@ -37,9 +40,9 @@ const ReportHistory = () => {
                         id='date-picker'
                     />
                     <Select
-                        placeholder="Choose User"
-                        name="owner_id"
                         id="users"
+                        name="owner_id"
+                        placeholder="Choose User"
                         selectItems={usersList.map(item => ({ value: item.user_id, title: item.full_name }))}
                     />
                 </article>
@@ -50,7 +53,7 @@ const ReportHistory = () => {
                     :
                     <CustomEmpty />
                 }
-            </article>
+            </form>
         </FormProvider>
     )
 };

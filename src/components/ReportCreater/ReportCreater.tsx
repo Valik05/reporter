@@ -9,6 +9,7 @@ import SaveIcon from "../../assets/icons/base/save-icon.svg?react";
 import { useEffect } from 'react';
 import { getDay } from '../../utils/getDay';
 import { useParams } from 'react-router-dom';
+import { useUser } from '../../context/useUser';
 import { useReport } from '../../context/useReport';
 import { Datepicker } from '../UI/DatePicker/Datepicker';
 import { LOCAL_STORAGE } from '../../enums/localStorage';
@@ -17,9 +18,10 @@ import type { TaskRequestBody } from '../../models/API/TaskAPI';
 import { FormProvider, useFieldArray, useForm } from 'react-hook-form';
 
 const ReportCreater = ({ mode = "create" }: { mode?: "create" | "edit" }) => {
+    const { user } = useUser();
     const { report_id } = useParams();
     const { showSystemMsg } = useSystemMsg();
-    const { getReport, report, createReport, updateReport } = useReport();
+    const { report, createReport, updateReport } = useReport();
     const form = useForm<TaskRequestBody>({
         defaultValues: {
             yesterday: [],
@@ -27,13 +29,15 @@ const ReportCreater = ({ mode = "create" }: { mode?: "create" | "edit" }) => {
             blockers: []
         }
     });
-    const { control, reset, handleSubmit } = form;
+    const { control, reset, handleSubmit, setValue } = form;
     const today = useFieldArray({ control, name: "today" });
     const blockers = useFieldArray({ control, name: "blockers" });
     const yesterday = useFieldArray({ control, name: "yesterday" });
 
-    useEffect(() => { if (mode === "edit" && report_id) getReport({ _id: report_id }) }, [mode, report_id, getReport])
     useEffect(() => { if (mode === "edit" && report) reset(report) }, [report, mode, reset])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    useEffect(() => { if (user?.developer_name && mode === "create") setValue("developer", user.developer_name) }, [mode])
+    useEffect(() => { if (mode === "create") setValue("date", new Date()) }, [mode, setValue])
 
     const onSubmit = (dates: TaskRequestBody) => {
         console.log(dates);

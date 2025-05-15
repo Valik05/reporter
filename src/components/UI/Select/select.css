@@ -32,6 +32,8 @@
     min-width: 10rem;
 
     cursor: pointer;
+
+    z-index: 2;
 }
 
 .select-content.error .select-box {

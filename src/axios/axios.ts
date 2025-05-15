@@ -14,4 +14,16 @@ axiosService.interceptors.request.use((config) => {
     return config
 })
 
+axiosService.interceptors.response.use((config) => config, async (error) => {
+    const request = error.config;
+    if (error.response?.status === 500 && !error.config._isRetry) {
+        request._isRetry = true;
+        try {
+            return axiosService.request(request)
+        } catch (e) {
+            console.error(e);
+        }
+    }
+})
+
 export { axiosService }

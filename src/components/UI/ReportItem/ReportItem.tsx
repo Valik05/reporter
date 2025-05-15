@@ -8,12 +8,16 @@ import EditIcon from '../../../assets/icons/base/edit-icon.svg?react';
 import DeleteIcon from '../../../assets/icons/base/delete-icon.svg?react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useUser } from '../../../context/useUser';
 import { useReport } from '../../../context/useReport';
+import { useFilter } from '../../../context/useFilter';
 import type { TaskSuccessResponceBody } from '../../../models/API/TaskAPI';
 
-const ReportItem = ({ _id, developer, date, ...props }: TaskSuccessResponceBody) => {
+const ReportItem = ({ _id, user_id, developer, date, ...props }: TaskSuccessResponceBody) => {
+    const { user } = useUser();
     const navigate = useNavigate();
-    const { deleteReport } = useReport();
+    const { usersList } = useFilter();
+    const { deleteReport, getReport } = useReport();
     const [currentCategory, setCurrentCaregory] = useState<"yesterday" | "today" | "blockers">("yesterday");
     return (
         <li className={classNames('report-item-container')}>
@@ -21,7 +25,7 @@ const ReportItem = ({ _id, developer, date, ...props }: TaskSuccessResponceBody)
                 <article className={classNames('short-info-box')}>
                     <Title
                         headingLevel={5}
-                        text={developer}
+                        text={`${developer} (${usersList.find(el => el.user_id === user_id)?.full_name})`}
                         fontWeight={500}
                     />
                     <Title
@@ -31,11 +35,14 @@ const ReportItem = ({ _id, developer, date, ...props }: TaskSuccessResponceBody)
                         text={new Date(date).toLocaleDateString("ru", { day: "2-digit", month: "2-digit", year: "numeric" })}
                     />
                 </article>
-                <article className={classNames('btn-box')}>
+                {user_id === user!.user_id && <article className={classNames('btn-box')}>
                     <Button
                         text="Edit"
                         startIcon={<EditIcon />}
-                        onClick={() => navigate(`/report/${_id}/edit`)}
+                        onClick={() => {
+                            getReport({ _id })
+                            navigate(`/report/${_id}/edit`)
+                        }}
                     />
                     <Button
                         color="red"
@@ -43,7 +50,7 @@ const ReportItem = ({ _id, developer, date, ...props }: TaskSuccessResponceBody)
                         startIcon={<DeleteIcon />}
                         onClick={() => deleteReport({ _id })}
                     />
-                </article>
+                </article>}
             </article>
             <Tabs
                 currentValue={currentCategory}
@@ -91,7 +98,7 @@ const ReportItem = ({ _id, developer, date, ...props }: TaskSuccessResponceBody)
                         </li>
                     )}
             </ul>
-        </li>
+        </li >
     )
 };
 
