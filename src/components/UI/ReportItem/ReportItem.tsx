@@ -90,7 +90,7 @@ const ReportItem = ({ _id, user_id, developer, date, ...props }: TaskSuccessResp
                                 />
                             </article>
                             <Title
-                                text={`\xa0\xa0\xa0 - ${description}`}
+                                text={`\xa0\xa0\xa0 - ${description.split(/\r?\n/).join("\n\xa0\xa0\xa0 -")}`}
                                 headingLevel={6}
                                 color="black"
                                 fontWeight={300}
