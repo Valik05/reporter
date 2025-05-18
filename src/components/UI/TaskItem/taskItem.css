@@ -24,3 +24,8 @@
 
     width: 100%;
 }
+
+.task-item-container .title-box svg {
+    width: 1.125rem;
+    height: 1.125rem;
+}

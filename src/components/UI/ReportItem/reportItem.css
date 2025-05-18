@@ -28,6 +28,11 @@
     gap: 0.5rem;
 }
 
+.report-item-container .display-container .btn-box svg {
+    width: 1.125rem;
+    height: 1.125rem;
+}
+
 .report-item-container .task-list-container {
     display: flex;
     flex-direction: column;

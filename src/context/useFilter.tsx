@@ -1,5 +1,5 @@
+import { useAuth } from "./useAuth";
 import { useSystemMsg } from "./useSystemMsg";
-import { LOCAL_STORAGE } from "../enums/localStorage";
 import { getFilterUsersAPI } from "../service/FilterService";
 import type { FilterUsersSuccessResponce } from "../models/API/FilterAPI";
 import { createContext, useCallback, useContext, useEffect, useState } from "react";
@@ -14,6 +14,7 @@ type Props = { children: React.ReactNode };
 const FilterContext = createContext<FilterContextType>({} as FilterContextType);
 
 export const FilterProvider = ({ children }: Props) => {
+    const { isAuth } = useAuth();
     const { showSystemMsg } = useSystemMsg();
     const [isReady, setIsReady] = useState(true);
     const [usersList, setUsersList] = useState<FilterUsersSuccessResponce[]>([]);
@@ -34,7 +35,7 @@ export const FilterProvider = ({ children }: Props) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
-    useEffect(() => { if (localStorage.getItem(LOCAL_STORAGE.ACCESS_TOKEN)) getUsersList() }, [getUsersList])
+    useEffect(() => { if (isAuth) getUsersList() }, [getUsersList, isAuth])
 
     return (
         <FilterContext.Provider

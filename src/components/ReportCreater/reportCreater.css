@@ -22,6 +22,11 @@
     color: var(--blue);
 }
 
+.report-creater-container .title-container svg {
+    width: 2.25rem;
+    height: 2.25rem;
+}
+
 .report-creater-container .inputs-container {
     display: flex;
     justify-content: center;
@@ -59,4 +64,15 @@
     width: 100%;
 
     box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000, 0 0 #0000, 0 1px 2px 0 rgb(0 0 0 / 0.05);
+}
+
+@media (max-width: 600px) {
+    .report-creater-container .task-sections {
+        display: flex;
+        flex-direction: column;
+
+        gap: 0.75rem;
+
+        width: 100%;
+    }
 }

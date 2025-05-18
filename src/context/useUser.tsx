@@ -1,6 +1,6 @@
+import { useAuth } from "./useAuth";
 import { useSystemMsg } from "./useSystemMsg";
 import { getUserAPI } from "../service/UserService";
-import { LOCAL_STORAGE } from "../enums/localStorage";
 import type { UserSuccessResponce } from "../models/API/UserAPI";
 import { createContext, useCallback, useContext, useEffect, useState } from "react";
 
@@ -15,6 +15,7 @@ type Props = { children: React.ReactNode };
 const UserContext = createContext<UserContextType>({} as UserContextType);
 
 export const UserProvider = ({ children }: Props) => {
+    const { isAuth } = useAuth();
     const { showSystemMsg } = useSystemMsg();
     const [isReady, setIsReady] = useState(true);
     const [user, setUser] = useState<UserSuccessResponce | null>(null);
@@ -36,8 +37,8 @@ export const UserProvider = ({ children }: Props) => {
     }, [])
 
     useEffect(() => {
-        if (localStorage.getItem(LOCAL_STORAGE.ACCESS_TOKEN)) getUser()
-    }, [getUser])
+        if (isAuth) getUser()
+    }, [getUser, isAuth])
 
     return (
         <UserContext.Provider

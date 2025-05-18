@@ -1,11 +1,12 @@
 
 import { useSystemMsg } from "./useSystemMsg";
 import type { AuthMessages } from "../models/API/AuthAPI";
-import { createContext, useContext, useEffect, useRef } from "react";
+import { createContext, useContext, useEffect, useRef, useState } from "react";
 import { LOCAL_STORAGE } from "../enums/localStorage";
 
 type AuthContextType = {
     openAuthWS: () => void,
+    isAuth: boolean
 };
 
 type Props = { children: React.ReactNode };
@@ -16,6 +17,7 @@ export const AuthProvider = ({ children }: Props) => {
     const { showSystemMsg } = useSystemMsg();
     const newWindow = useRef<Window | null>(null);
     const loginWSRef = useRef<WebSocket | null>(null);
+    const [isAuth, setIsAuth] = useState<boolean>(!!localStorage.getItem(LOCAL_STORAGE.ACCESS_TOKEN));
 
     const openAuthWS = (): WebSocket => {
         if (loginWSRef.current) loginWSRef.current.close();
@@ -39,6 +41,7 @@ export const AuthProvider = ({ children }: Props) => {
 
             if ("access_token" in data && data?.access_token && "status" in data && data.status === "success") {
                 loginWSRef.current?.close();
+                setIsAuth(true)
                 if (newWindow.current && !newWindow.current.closed) newWindow.current.close();
                 showSystemMsg({ text: "Authentification successful", type: "success" })
                 localStorage.setItem(LOCAL_STORAGE.ACCESS_TOKEN, data.access_token)
@@ -72,7 +75,7 @@ export const AuthProvider = ({ children }: Props) => {
 
     return (
         <AuthContext.Provider
-            value={{ openAuthWS }}
+            value={{ openAuthWS, isAuth }}
         >
             {children}
         </AuthContext.Provider>

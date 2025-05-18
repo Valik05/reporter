@@ -1,5 +1,6 @@
 import './styles/index.css';
 import App from './App.tsx';
+import WebApp from '@twa-dev/sdk';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import { AuthProvider } from './context/useAuth.tsx';
@@ -8,6 +9,8 @@ import { ReportProvider } from './context/useReport.tsx';
 import { FilterProvider } from './context/useFilter.tsx';
 import { LoadingProvider } from './context/useLoading.tsx';
 import { SystemMsgProvider } from './context/useSystemMsg.tsx';
+
+WebApp.ready();
 
 createRoot(document.getElementById('root')!).render(
   <BrowserRouter>
