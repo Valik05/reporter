@@ -1,11 +1,15 @@
-export type ConnectSuccessResponce = {
-    uuid?: string,
-    bot_url?: URL
+export type AuthRequestBody = {
+    initData: string
 }
 
 export type AuthSuccessResponce = {
-    status?: string,
-    access_token?: string
+    access_token: string,
+    user: {
+        user_id: string,
+        chat_id: number,
+        username: string,
+        full_name: string,
+        iat: Date,
+        exp: Date
+    }
 }
-
-export type AuthMessages = ConnectSuccessResponce & AuthSuccessResponce

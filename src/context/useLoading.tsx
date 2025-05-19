@@ -3,17 +3,19 @@ import { useUser } from "./useUser";
 import { useFilter } from "./useFilter";
 import { useReport } from "./useReport";
 import { createContext, useContext } from "react";
+import { useAuth } from "./useAuth";
 
 type Props = { children: React.ReactNode };
 
 const LoadingContext = createContext({});
 
 export const LoadingProvider = ({ children }: Props) => {
+    const auth = useAuth();
     const user = useUser();
     const filter = useFilter();
     const report = useReport();
 
-    const isReady = user.isReady && filter.isReady && report.isReady
+    const isReady = auth.isReady && user.isReady && filter.isReady && report.isReady
     return (
         <LoadingContext.Provider value={{}}>
             {isReady ? children : <Loader />}

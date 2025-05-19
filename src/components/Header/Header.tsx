@@ -4,19 +4,18 @@ import Button from '../UI/Button/Button';
 import Navigation from '../UI/Navigation/Navigation';
 import LoginIcon from '../../assets/icons/nav/login-icon.svg?react';
 import { useAuth } from '../../context/useAuth';
-import { LOCAL_STORAGE } from '../../enums/localStorage';
 
 const Header = () => {
-    const { openAuthWS } = useAuth();
+    const { login, isAuth } = useAuth();
     return (
-        <header className={classNames('header-container', { auth: !!localStorage.getItem(LOCAL_STORAGE.ACCESS_TOKEN) })}>
-            {!!localStorage.getItem(LOCAL_STORAGE.ACCESS_TOKEN) || <Button
+        <header className={classNames('header-container', { auth: isAuth })}>
+            {isAuth || <Button
                 text={"Login"}
                 startIcon={<LoginIcon />}
                 style={{ padding: "0.5rem 0.75rem" }}
-                onClick={openAuthWS}
+                onClick={login}
             />}
-            {!!localStorage.getItem(LOCAL_STORAGE.ACCESS_TOKEN) && <Navigation />}
+            {isAuth && <Navigation />}
         </header>
     )
 };

@@ -1,17 +1,6 @@
 import './title.css';
 import classNames from "classnames";
-
-interface Props extends React.HtmlHTMLAttributes<HTMLHeadingElement> {
-    text?: string,
-    fontSize?: string
-    color?: "black" | "red" | "gray" | "blue" | "light-blue" | "white"
-    classes?: ('fullWidth')[]
-    lineHeight?: number | string;
-    headingLevel: 1 | 2 | 3 | 4 | 5 | 6;
-    children?: React.ReactNode | string | number;
-    fontWeight: 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900;
-    fontFamily?: ("default")[]
-}
+import type { TitleProps } from '../../../models/Title/Title';
 
 const Title = ({
     text,
@@ -25,7 +14,7 @@ const Title = ({
     classes,
     className,
     ...h2Props
-}: Props) => {
+}: TitleProps) => {
     const HeadingTag = `h${headingLevel}`;
     return (
         // @ts-expect-error unknown issue

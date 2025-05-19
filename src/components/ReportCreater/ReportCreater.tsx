@@ -10,15 +10,16 @@ import { useEffect } from 'react';
 import { getDay } from '../../utils/getDay';
 import { useParams } from 'react-router-dom';
 import { useUser } from '../../context/useUser';
+import { useAuth } from '../../context/useAuth';
 import { useReport } from '../../context/useReport';
 import { Datepicker } from '../UI/DatePicker/Datepicker';
-import { LOCAL_STORAGE } from '../../enums/localStorage';
 import { useSystemMsg } from '../../context/useSystemMsg';
 import type { TaskRequestBody } from '../../models/API/TaskAPI';
 import { FormProvider, useFieldArray, useForm } from 'react-hook-form';
 
 const ReportCreater = ({ mode = "create" }: { mode?: "create" | "edit" }) => {
     const { user } = useUser();
+    const { isAuth } = useAuth();
     const { report_id } = useParams();
     const { showSystemMsg } = useSystemMsg();
     const { report, createReport, updateReport } = useReport();
@@ -41,7 +42,7 @@ const ReportCreater = ({ mode = "create" }: { mode?: "create" | "edit" }) => {
 
     const onSubmit = (dates: TaskRequestBody) => {
         console.log(dates);
-        if (!localStorage.getItem(LOCAL_STORAGE.ACCESS_TOKEN)) return showSystemMsg({ text: "Sign in please", type: "error" })
+        if (!isAuth) return showSystemMsg({ text: "Sign in please", type: "error" })
         if (mode === "create") createReport(dates)
         if (mode === "edit") updateReport({ _id: report_id!, ...dates })
     }
@@ -54,7 +55,7 @@ const ReportCreater = ({ mode = "create" }: { mode?: "create" | "edit" }) => {
                     <Title
                         color="light-blue"
                         headingLevel={1}
-                        text='Report Creater'
+                        text='Report Creator'
                         fontWeight={700}
                         style={{ textAlign: "center" }}
                     />
