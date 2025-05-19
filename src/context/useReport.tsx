@@ -91,6 +91,7 @@ export const ReportProvider = ({ children }: Props) => {
             .then((res) => {
                 if (res) {
                     // console.log(res);
+                    navigate("/")
                     getReportList({})
                     setReportList(prev => {
                         const arr = [...prev];

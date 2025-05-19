@@ -45,6 +45,7 @@ const ReportCreater = ({ mode = "create" }: { mode?: "create" | "edit" }) => {
         if (!isAuth) return showSystemMsg({ text: "Sign in please", type: "error" })
         if (mode === "create") createReport(dates)
         if (mode === "edit") updateReport({ _id: report_id!, ...dates })
+        reset()
     }
 
     return (
