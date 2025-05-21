@@ -2,7 +2,7 @@ import './notFound.css';
 import { Navigate } from 'react-router-dom';
 
 const NotFound = () => {
-    return <Navigate to={"/report/create"} />
+    return <Navigate to={"/"} />
 };
 
 export default NotFound;
