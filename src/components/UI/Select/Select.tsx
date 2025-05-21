@@ -31,7 +31,12 @@ const Select = forwardRef(
                                 fontWeight={400}
                                 onClick={() => setActive(!active)}
                                 className={classNames("current-item")}
-                                text={`${selectItems.find(el => el.value === field.value)?.title || placeholder}`}
+                                text={`${(selectItems.find(el => el.value === field.value)?.title !== undefined
+                                    ?
+                                    (selectItems.find(el => el.value === field.value)?.title || "No username")
+                                    :
+                                    placeholder)
+                                    }`}
                             />
                             <ul className={classNames("select-item-list", { active })}>
                                 {selectItems.map(({ value, title }, index) =>
@@ -52,7 +57,7 @@ const Select = forwardRef(
                                         />
                                         <Title
                                             color="black"
-                                            text={`${title}`}
+                                            text={`${title || "No username"}`}
                                             headingLevel={6}
                                             fontWeight={400}
                                         />

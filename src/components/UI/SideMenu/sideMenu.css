@@ -21,7 +21,8 @@
 
     transition: transform 0.5s ease;
 
-    background: var(--white);
+    background: url("../../../assets/icons/background/abstract-background.svg") no-repeat, var(--white);
+    background-size: cover;
 }
 
 .side-menu-container.active {
