@@ -1,0 +1,44 @@
+.side-menu-container {
+    width: 100vw;
+    height: 100vh;
+
+    position: fixed;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: flex-end;
+
+    padding: 1.5rem;
+
+    gap: 2rem;
+
+    z-index: 10;
+
+    pointer-events: none;
+
+    transform: translateX(100%);
+
+    transition: transform 0.5s ease;
+
+    background: var(--white);
+}
+
+.side-menu-container.active {
+    pointer-events: all;
+
+    transform: translateX(0%);
+}
+
+.side-menu-container .side-menu-close-icon {
+    display: flex;
+
+    align-items: center;
+
+    cursor: pointer;
+}
+
+.side-menu-container .side-menu-content-box {
+    width: 100%;
+    height: 100%;
+}

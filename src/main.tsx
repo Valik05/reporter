@@ -8,6 +8,7 @@ import { UserProvider } from './context/useUser.tsx';
 import { ReportProvider } from './context/useReport.tsx';
 import { FilterProvider } from './context/useFilter.tsx';
 import { LoadingProvider } from './context/useLoading.tsx';
+import { SideMenuProvider } from './context/useSideMenu.tsx';
 import { SystemMsgProvider } from './context/useSystemMsg.tsx';
 
 WebApp.ready();
@@ -19,9 +20,11 @@ createRoot(document.getElementById('root')!).render(
         <UserProvider>
           <FilterProvider>
             <ReportProvider>
-              <LoadingProvider>
-                <App />
-              </LoadingProvider>
+              <SideMenuProvider>
+                <LoadingProvider>
+                  <App />
+                </LoadingProvider>
+              </SideMenuProvider>
             </ReportProvider>
           </FilterProvider>
         </UserProvider>

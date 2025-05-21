@@ -3,3 +3,34 @@
 
     gap: 1.75rem;
 }
+
+.nav-container .adaptive-icon {
+    display: none;
+
+    color: var(--light-blue);
+}
+
+.nav-container .adaptive-icon svg {
+    width: 1.75rem;
+    height: 1.75rem;
+}
+
+@media (max-width: 600px) {
+    .nav-container {
+        justify-content: flex-end;
+
+        width: 100%;
+    }
+
+    .nav-container .adaptive-icon {
+        display: flex;
+
+        align-items: center;
+
+        cursor: pointer;
+    }
+
+    .nav-container .link {
+        display: none;
+    }
+}
