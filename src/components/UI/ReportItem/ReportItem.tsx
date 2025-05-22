@@ -25,7 +25,7 @@ const ReportItem = ({ _id, user_id, developer, date, ...props }: TaskSuccessResp
                 <article className={classNames('short-info-box')}>
                     <Title
                         headingLevel={5}
-                        text={`${developer} (${usersList.find(el => el.user_id === user_id)?.full_name})`}
+                        text={`${developer} (${usersList.find(el => el.user_id === user_id)?.full_name || "No username"})`}
                         fontWeight={500}
                     />
                     <Title
