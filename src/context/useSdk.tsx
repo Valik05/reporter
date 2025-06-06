@@ -16,7 +16,7 @@ export const SdkProvider = ({ children }: Props) => {
     const [isReady, setIsReady] = useState<boolean>(false);
 
     const initializeSdk = useCallback(() => {
-        if (!window.TrafficGramSDK) {
+        if (window.TrafficGramSDK) {
             window.trafficGramSDK = window.TrafficGramSDK.initialize(
                 "RU9avyMHzBInI3Q1RBBSnBmRxpgKHOpu7YYJSgBx9q2ybgpgmSquO0QzmeTNvBi5"
             );
