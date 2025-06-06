@@ -18,7 +18,7 @@ export const SdkProvider = ({ children }: Props) => {
     const initializeSdk = useCallback(() => {
         if (window.TrafficGramSDK) {
             window.trafficGramSDK = window.TrafficGramSDK.initialize(
-                "RU9avyMHzBInI3Q1RBBSnBmRxpgKHOpu7YYJSgBx9q2ybgpgmSquO0QzmeTNvBi5"
+                "b1ltcY0yc0sqzWeFUebAiy69emSxidtKEtsS09BAzHZDJDKYh5BrZFnhn2qb0hhW"
             );
             console.log("SDK initialized");
         } else {
