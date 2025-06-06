@@ -1,10 +1,11 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck
+import type { adSelectorType } from "../models/SDK/SDK";
 import { createContext, useCallback, useContext, useEffect, useState } from "react";
 
 type SdkContextType = {
     isReady: boolean,
-    displayAd: (ref: React.RefObject<HTMLDivElement | null>, adContainerSelector: string) => void
+    displayAd: (adContainerSelector: adSelectorType, baseCssVariables?: Record<string, string>) => void
 };
 
 type Props = { children: React.ReactNode };
@@ -28,8 +29,11 @@ export const SdkProvider = ({ children }: Props) => {
 
     useEffect(() => { initializeSdk() }, [initializeSdk])
 
-    const displayAd = useCallback((ref: React.RefObject<HTMLDivElement | null>, adContainerSelector: string) => {
-        if (window.trafficGramSDK && ref?.current) window.trafficGramSDK.displayAd(adContainerSelector)
+    const displayAd = useCallback((
+        adContainerSelector: adSelectorType,
+        baseCssVariables?: Record<string, string>
+    ) => {
+        if (window.trafficGramSDK) window.trafficGramSDK.displayAd(adContainerSelector, baseCssVariables)
         else console.error("SDK not ready or ad container not found for selector:", adContainerSelector);
     }, []);
 
