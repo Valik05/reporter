@@ -16,8 +16,8 @@ export const SdkProvider = ({ children }: Props) => {
     const [isReady, setIsReady] = useState<boolean>(false);
 
     const initializeSdk = useCallback(() => {
-        if (window.TrafficGramSDK) {
-            window.trafficGramSDK = window.TrafficGramSDK.initialize(
+        if (window.TrafficGramSDKInstance) {
+            window.TrafficGramSDK = window.TrafficGramSDKInstance.initialize(
                 "RU9avyMHzBInI3Q1RBBSnBmRxpgKHOpu7YYJSgBx9q2ybgpgmSquO0QzmeTNvBi5"
             );
             console.log("SDK initialized");
@@ -33,7 +33,7 @@ export const SdkProvider = ({ children }: Props) => {
         adContainerSelector: adSelectorType,
         baseCssVariables?: Record<string, string>
     ) => {
-        if (window.trafficGramSDK) window.trafficGramSDK.displayAd(adContainerSelector, baseCssVariables)
+        if (window.TrafficGramSDK) window.TrafficGramSDK.displayAd(adContainerSelector, baseCssVariables)
         else console.error("SDK not ready or ad container not found for selector:", adContainerSelector);
     }, []);
 
